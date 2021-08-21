@@ -285,7 +285,7 @@ function myFunction() {
   }
 
  function getStockName() {
-    //alert("sdsd");
+    
   var stockField = document.getElementById('myInput').value;
   alert(stockField);
 
@@ -307,16 +307,6 @@ function myFunction() {
   var e1 = document.getElementById("product");
    var currency = e1.options[e1.selectedIndex].text;
    alert(currency);
-
-// var buytype;
-//   var BuyType = document.getElementById("radio1");
-//   if (document.getElementById('BUY').checked) {
-//    buytype = document.getElementById('BUY').value;
-//   }
-//   else{
-//     buytype = document.getElementById('SELL').value;
-//   }
-//   alert(BuyType1);
   
   var orderType1 = document.getElementById('category1');
   var e2 = document.getElementById("category1");
@@ -338,7 +328,21 @@ function myFunction() {
             window.parent.postMessage(
                 JSON.stringify({
                     event_code: "ym-client-event",
-                    data: "rockstar"
+                    data: stockField,
+                    settlementMode,
+                    setalert,
+                    currency,
+                    orderType,
+                    orderDuration, 
+                    quantity1, 
+                    product1,
+                    product,
+                     quantity
+
+
+
+
+
                 }),
                 "*"
             );
