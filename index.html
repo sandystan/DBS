@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+*{
+  box-sizing: border-box;
+}
+
+body {
+  font: 16px Arial;  
+}
+
+/*the container must be positioned relative:*/
+ .autocomplete {
+  position: relative;
+  display: inline-block;
+} 
+
+Fieldset{
+  width:100%;
+  display: inline-block;
+  position: relative;
+}
+
+.autocomplete-items {
+  position: absolute;
+  border: 1px solid #d4d4d4;
+  border-bottom: none;
+  border-top: none;
+  z-index: 99;
+  top: 100%;
+  left: 0;
+  right: 0;
+   display: flex;
+  align-items: flex-start;
+}
+.autocomplete-items  {
+  padding: 10px;
+  cursor: pointer;
+  background-color: #fff;
+  border-bottom: 1px solid #d4d4d4;
+}
+
+
+.quotes {
+  background-color: white;
+ border: 1px solid black;
+   border: 1px solid black;
+  border-collapse: collapse;
+  width:20%
+}
+  
+
+input {
+ border: 8px solid transparent;
+  background-color: #f1f1f1;
+  padding: 0px;
+  font-size: 16px;
+  position:relative;
+}
+
+input[type=text] {
+  background-color: #f1f1f1;
+  width: 70%;
+  position:relative;
+  
+}
+#quantity,#quantity1 {
+  background-color: #f1f1f1;
+  width: 40%;
+  position:relative;
+  
+}
+#myDIV{
+   border: 8px solid transparent;
+  background-color: #f1f1f1;
+  padding: 0px;
+  font-size: 16px;
+  
+   margin-left: 1px;
+}
+
+input[type=submit],#showall{
+  background-color: black;
+  color: #fff;
+  font-size: 16px;
+  position:relative;
+  cursor: pointer;
+  border-radius: 30px;
+}
+
+#category,#product,#category1,#product1{
+  background-color: black;
+  color: #fff;
+  font-size: 16px;
+  position:relative;
+  cursor: pointer;
+
+  
+}
+
+
+
+
+html {
+  font-family: sans-serif;
+}
+
+div:first-of-type {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 5px;
+}
+
+label {
+  margin-right: 15px;
+  line-height: 32px;
+}
+ #radio1 {
+ -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+ 
+ /* border: 2px solid #999; */
+  transition: 0.2s all linear;
+  margin-right: 5px;
+  position: relative;
+  top: 4px;
+ } 
+
+input:checked {
+  border: 1px solid black;
+}
+
+button,legend{
+  color: white;
+  background-color: black;
+  padding: 15px 15px 10px 12px;
+ border-radius: 0;
+  border: 0;
+  font-size: 14px;
+  border-radius: 10px;
+}
+
+.container{
+ color: black;
+  background-color: white;
+  
+ border-radius: 0;
+  border: 0;
+  font-size: 17px;
+}
+
+
+
+.select-css{
+  border-radius: 30px;
+   font-size: 50px;
+   width:30%;
+  height:30%;
+}
+
+
+body {
+  font-family: Arial;
+  font-size: 17px;
+  padding: 8px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.row {
+  display: -ms-flexbox; 
+  display: flex;
+  -ms-flex-wrap: wrap; 
+  flex-wrap: wrap;
+  margin: 0 -16px;
+}
+
+.col-25 {
+  -ms-flex: 25%; /* IE10 */
+  flex: 25%;
+}
+
+.col-50 {
+  -ms-flex: 50%; /* IE10 */
+  flex: 50%;
+}
+
+.col-75 {
+  -ms-flex: 50%; 
+  flex: 50%;
+}
+
+.col-25,
+.col-50,
+.col-75 {
+  padding:5px 10px 10px 50px;
+}
+
+.container {
+  background-color: #f2f2f2;
+  padding: 5px 20px 15px 30px;
+  border: 2px solid lightgrey;
+  border-radius: 30px;
+  margin-right:15px;
+}
+
+input[type=text] {
+  width:80%;
+  margin-bottom: 20px;
+  padding: 12px;
+  margin-right: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10000px;
+}
+label {
+  margin-bottom: 10px;
+  display: block;
+}
+
+
+.btn {
+  background-color: #04AA6D;
+  color: white;
+  padding: 12px;
+  margin: 10px 0;
+  border: none;
+  width: 100%;
+  border-radius: 3333px;
+  cursor: pointer;
+  font-size: 17px;
+}
+
+.btn:hover {
+  background-color: #45a049;
+}
+
+a {
+  color: #2196F3;
+}
+
+hr {
+  border: 1px solid lightgrey;
+}
+
+
+
+@media (max-width: 800px) {
+  .row {
+    flex-direction: column-reverse;
+  }
+  .col-25 {
+    margin-bottom: 20px;
+  }
+}
+
+
+
+button:hover,
+button:focus {
+  color: #999;
+}
+
+button:active {
+  background-color: white;
+  color: black;
+  outline: 1px solid black;
+}
+</style>
+</head>     
+<body>
+  <script>
+     
+function myFunction() {
+    var x = document.getElementById("myDIV");
+    if (x.style.display === "none") {
+      x.style.display = "block";
+    } else {
+      x.style.display = "none";
+    }
+  }
+
+ function getStockName() {
+    //alert("sdsd");
+  var stockField = document.getElementById('myInput').value;
+  alert(stockField);
+
+  var settlementMode1 = document.getElementById('category');
+  var e = document.getElementById("category");
+  var settlementMode = e.options[e.selectedIndex].text;
+  alert(settlementMode);
+  
+  if(checkbox.checked){
+  var setalert = document.getElementById("checkbox").value
+  alert(setalert)
+  }
+ else{
+   var setalert ="False";
+  alert(setalert)
+ }
+   
+  var currency1 = document.getElementById('product');
+  var e1 = document.getElementById("product");
+   var currency = e1.options[e1.selectedIndex].text;
+   alert(currency);
+
+// var buytype;
+//   var BuyType = document.getElementById("radio1");
+//   if (document.getElementById('BUY').checked) {
+//    buytype = document.getElementById('BUY').value;
+//   }
+//   else{
+//     buytype = document.getElementById('SELL').value;
+//   }
+//   alert(BuyType1);
+  
+  var orderType1 = document.getElementById('category1');
+  var e2 = document.getElementById("category1");
+   var orderType = e2.options[e2.selectedIndex].text;
+   alert(orderType);
+  
+  var orderDuration1 = document.getElementById('product1');
+  var e3 = document.getElementById("product1");
+   var orderDuration = e3.options[e3.selectedIndex].text;
+   alert(orderDuration);
+  
+  var quantity = document.getElementById('quantity').value;
+  alert(quantity);
+  var quantity1 = document.getElementById('quantity1').value;
+  alert(quantity1);
+ 
+  
+            console.log("Rockstar voucher code")
+            window.parent.postMessage(
+                JSON.stringify({
+                    event_code: "ym-client-event",
+                    data: "rockstar"
+                }),
+                "*"
+            );
+}
+    
+
+
+
+function autocomplete(inp, arr) {
+  /*the autocomplete function takes two arguments,
+  the text field element and an array of possible autocompleted values:*/
+  var currentFocus;
+  /*execute a function when someone writes in the text field:*/
+  inp.addEventListener("input", function(e) {
+      var a, b, i, val = this.value;
+      /*close any already open lists of autocompleted values*/
+      closeAllLists();
+      if (!val) { return false;}
+      currentFocus = -1;
+      /*create a DIV element that will contain the items (values):*/
+      a = document.createElement("DIV");
+      a.setAttribute("id", this.id + "autocomplete-list");
+      a.setAttribute("class", "autocomplete-items");
+      /*append the DIV element as a child of the autocomplete container:*/
+      this.parentNode.appendChild(a);
+      /*for each item in the array...*/
+      for (i = 0; i < arr.length; i++) {
+        /*check if the item starts with the same letters as the text field value:*/
+        if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
+          /*create a DIV element for each matching element:*/
+          b = document.createElement("DIV");
+          /*make the matching letters bold:*/
+          b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
+          b.innerHTML += arr[i].substr(val.length);
+          /*insert a input field that will hold the current array item's value:*/
+          b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
+          /*execute a function when someone clicks on the item value (DIV element):*/
+          b.addEventListener("click", function(e) {
+              /*insert the value for the autocomplete text field:*/
+              inp.value = this.getElementsByTagName("input")[0].value;
+              /*close the list of autocompleted values,
+              (or any other open lists of autocompleted values:*/
+              closeAllLists();
+          });
+          a.appendChild(b);
+        }
+      }
+  });
+  /*execute a function presses a key on the keyboard:*/
+  inp.addEventListener("keydown", function(e) {
+      var x = document.getElementById(this.id + "autocomplete-list");
+      if (x) x = x.getElementsByTagName("div");
+      if (e.keyCode == 40) {
+        /*If the arrow DOWN key is pressed,
+        increase the currentFocus variable:*/
+        currentFocus++;
+        /*and and make the current item more visible:*/
+        addActive(x);
+      } else if (e.keyCode == 38) { //up
+        /*If the arrow UP key is pressed,
+        decrease the currentFocus variable:*/
+        currentFocus--;
+        /*and and make the current item more visible:*/
+        addActive(x);
+      } else if (e.keyCode == 13) {
+        /*If the ENTER key is pressed, prevent the form from being submitted,*/
+        e.preventDefault();
+        if (currentFocus > -1) {
+          /*and simulate a click on the "active" item:*/
+          if (x) x[currentFocus].click();
+        }
+      }
+  });
+  function addActive(x) {
+    /*a function to classify an item as "active":*/
+    if (!x) return false;
+    /*start by removing the "active" class on all items:*/
+    removeActive(x);
+    if (currentFocus >= x.length) currentFocus = 0;
+    if (currentFocus < 0) currentFocus = (x.length - 1);
+    /*add class "autocomplete-active":*/
+    x[currentFocus].classList.add("autocomplete-active");
+  }
+  function removeActive(x) {
+    /*a function to remove the "active" class from all autocomplete items:*/
+    for (var i = 0; i < x.length; i++) {
+      x[i].classList.remove("autocomplete-active");
+    }
+  }
+  function closeAllLists(elmnt) {
+    /*close all autocomplete lists in the document,
+    except the one passed as an argument:*/
+    var x = document.getElementsByClassName("autocomplete-items");
+    for (var i = 0; i < x.length; i++) {
+      if (elmnt != x[i] && elmnt != inp) {
+        x[i].parentNode.removeChild(x[i]);
+      }
+    }
+  }
+  /*execute a function when someone clicks in the document:*/
+  document.addEventListener("click", function (e) {
+      closeAllLists(e.target);
+  });
+}
+
+/*An array containing all the country names in the world:*/
+//var countries = ["Afghanistan","Albania","Algeria","Andorra","Angola","Anguilla","Antigua & Barbuda","Argentina","Armenia","Aruba","Australia","Austria","Azerbaijan","Bahamas","Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bermuda","Bhutan","Bolivia","Bosnia & Herzegovina","Botswana","Brazil","British Virgin Islands","Brunei","Bulgaria","Burkina Faso","Burundi","Cambodia","Cameroon","Canada","Cape Verde","Cayman Islands","Central Arfrican Republic","Chad","Chile","China","Colombia","Congo","Cook Islands","Costa Rica","Cote D Ivoire","Croatia","Cuba","Curacao","Cyprus","Czech Republic","Denmark","Djibouti","Dominica","Dominican Republic","Ecuador","Egypt","El Salvador","Equatorial Guinea","Eritrea","Estonia","Ethiopia","Falkland Islands","Faroe Islands","Fiji","Finland","France","French Polynesia","French West Indies","Gabon","Gambia","Georgia","Germany","Ghana","Gibraltar","Greece","Greenland","Grenada","Guam","Guatemala","Guernsey","Guinea","Guinea Bissau","Guyana","Haiti","Honduras","Hong Kong","Hungary","Iceland","India","Indonesia","Iran","Iraq","Ireland","Isle of Man","Israel","Italy","Jamaica","Japan","Jersey","Jordan","Kazakhstan","Kenya","Kiribati","Kosovo","Kuwait","Kyrgyzstan","Laos","Latvia","Lebanon","Lesotho","Liberia","Libya","Liechtenstein","Lithuania","Luxembourg","Macau","Macedonia","Madagascar","Malawi","Malaysia","Maldives","Mali","Malta","Marshall Islands","Mauritania","Mauritius","Mexico","Micronesia","Moldova","Monaco","Mongolia","Montenegro","Montserrat","Morocco","Mozambique","Myanmar","Namibia","Nauro","Nepal","Netherlands","Netherlands Antilles","New Caledonia","New Zealand","Nicaragua","Niger","Nigeria","North Korea","Norway","Oman","Pakistan","Palau","Palestine","Panama","Papua New Guinea","Paraguay","Peru","Philippines","Poland","Portugal","Puerto Rico","Qatar","Reunion","Romania","Russia","Rwanda","Saint Pierre & Miquelon","Samoa","San Marino","Sao Tome and Principe","Saudi Arabia","Senegal","Serbia","Seychelles","Sierra Leone","Singapore","Slovakia","Slovenia","Solomon Islands","Somalia","South Africa","South Korea","South Sudan","Spain","Sri Lanka","St Kitts & Nevis","St Lucia","St Vincent","Sudan","Suriname","Swaziland","Sweden","Switzerland","Syria","Taiwan","Tajikistan","Tanzania","Thailand","Timor L'Este","Togo","Tonga","Trinidad & Tobago","Tunisia","Turkey","Turkmenistan","Turks & Caicos","Tuvalu","Uganda","Ukraine","United Arab Emirates","United Kingdom","United States of America","Uruguay","Uzbekistan","Vanuatu","Vatican City","Venezuela","Vietnam","Virgin Islands (US)","Yemen","Zambia","Zimbabwe"];
+var countries = ["Katrina Group Ltd.",  
+"Wong Fong Industries Limited  ",
+"Agv Group Limited",
+"Mm2 Asia Ltd.",
+"Hc Surgical Specialistslimited   ",
+"Charisma Energyservicesw211128",
+"Ocean Sky International Ltd  ",
+"Cedar Strategic Holdings Ltd ",
+"Pacific Star Development Ltd   ", 
+"Kimly Limited  ",
+"Unusual Limited ",
+"Lifebrandz Ltd. ",
+"Aoxin Q &amp; M Dental Grp Limited  ",
+"Capital World Limited. ",
+"Singapore O&amp;g Ltd.",
+"Sanli Environmental Limited",
+"World Class Global Limited",
+"Viking Offshore And Ma W220701 ",
+"Shopper360 Limited ",
+"Union Gas Holdings Limited",
+"Aspen (group) Holdings Limited",
+"Koh Brothers Eco Engg W2 ",
+"Re&amp;s Holdings Limited  ",
+"Cwx Global Limited W221213 ",
+"No Signboard Holdings Ltd. ",
+"Amplefield Limited W221218  ",
+"Olive Tree Estates Limited ",
+ "Clearbridge Health Limited ",
+"Memories Group Limited  ",
+"Asia-pacific Strategic W230130",
+"Ly Corporation Limited",
+"Ayondo Ltd.",
+"Slb Development Ltd.",
+"Pine Capital Group W230506",
+"Asian Healthcare Specialists",
+"Jep Holdings Ltd.",
+"Hyphens Pharma Intl Limited",
+"Jawala Inc.",
+"Top Glove Mb Ecw210917",
+"Vikingoffshore"];
+
+/*initiate the autocomplete function on the "myInput" element, and pass along the countries array as possible autocomplete values:*/
+autocomplete(document.getElementById("myInput"), countries);
+
+
+
+function myFunction1() {
+  myFunction();
+  var x =document.getElementById("myInput");
+   
+  alert(x.value);
+  
+}
+
+                       
+    </script>
+<span>
+
+
+<!--Make sure the form has the autocomplete function switched off:-->
+<form autocomplete="off" action="/action_page.php">
+   <fieldset> <h2>Place Order</h2>
+
+<p>Stock search</p>
+<div class="autocomplete" style="width:350px;">
+    <input id="myInput" type="text" name="myCountry" placeholder="Stock">
+    <span><input type="submit" onclick = "myFunction1()"></span>
+  </div>
+ 
+
+  <br>
+  <button id = "showall" onclick="myFunction()">Show my list</button>
+<div id="myDIV" class="cb"><table class="quotes">
+    <tbody><tr><th>Code</th><th>Name</th><th style="text-align:right;">High</th><th style="text-align:right;">Low</th><th style="text-align:right;">Close</th><th style="text-align:right;">Volume</th><th style="text-align:center;" colspan="3">Change</th><th width="40">&nbsp;</th></tr>
+    <tr class="ro" onclick="location.href='/stockquote/SGX/1A0.htm';" style="color: black; background: rgb(255, 255, 255);"><td><a href="/stockquote/SGX/1A0.htm" title="Display Quote &amp; Chart for SGX,1A0">1A0</a></td><td>Katrina Group Ltd.</td><td align="right">0.0810</td><td align="right">0.0810</td><td align="right">0.0810</td><td align="right">0</td><td align="right">0.0000</td><td align="center"><img src="/images/nc.gif"></td><td align="left">0.00</td><td align="right"><a href="/stockquote/SGX/1A0.htm" title="Download Data for SGX,1A0"><img src="/images/dl.gif" width="14" height="14"></a>&nbsp;<a href="/stockquote/SGX/1A0.htm" title="View Quote and Chart for SGX,1A0"><img src="/images/chart.gif" width="14" height="14"></a></td></tr>
+    <tr class="re" onclick="location.href='/stockquote/SGX/1A1.htm';" style="color: black; background: rgb(238, 238, 238);"><td><a href="/stockquote/SGX/1A1.htm" title="Display Quote &amp; Chart for SGX,1A1">1A1</a></td><td>Wong Fong Industries Limited</td><td align="right">0.1520</td><td align="right">0.1520</td><td align="right">0.1520</td><td align="right">0</td><td align="right">0.0000</td><td align="center"><img src="/images/nc.gif"></td><td align="left">0.00</td><td align="right"><a href="/stockquote/SGX/1A1.htm" title="Download Data for SGX,1A1"><img src="/images/dl.gif" width="14" height="14"></a>&nbsp;<a href="/stockquote/SGX/1A1.htm" title="View Quote and Chart for SGX,1A1"><img src="/images/chart.gif" width="14" height="14"></a></td></tr>
+    <tr class="ro" onclick="location.href='/stockquote/SGX/1A4.htm';" style="color: black; background: rgb(255, 255, 255);"><td><a href="/stockquote/SGX/1A4.htm" title="Display Quote &amp; Chart for SGX,1A4">1A4</a></td><td>Agv Group Limited</td><td align="right">0.0170</td><td align="right">0.0160</td><td align="right">0.0170</td><td align="right">1,502,600</td><td align="right">0.0000</td><td align="center"><img src="/images/nc.gif"></td><td align="left">0.00</td><td align="right"><a href="/stockquote/SGX/1A4.htm" title="Download Data for SGX,1A4"><img src="/images/dl.gif" width="14" height="14"></a>&nbsp;<a href="/stockquote/SGX/1A4.htm" title="View Quote and Chart for SGX,1A4"><img src="/images/chart.gif" width="14" height="14"></a></td></tr>
+    <tr class="re" onclick="location.href='/stockquote/SGX/1B0.htm';" style="color: black; background: rgb(238, 238, 238);"><td><a href="/stockquote/SGX/1B0.htm" title="Display Quote &amp; Chart for SGX,1B0">1B0</a></td><td>Mm2 Asia Ltd.</td><td align="right">0.0640</td><td align="right">0.0600</td><td align="right">0.0620</td><td align="right">8,959,700</td><td align="right">0.0000</td><td align="center"><img src="/images/nc.gif"></td><td align="left">0.00</td><td align="right"><a href="/stockquote/SGX/1B0.htm" title="Download Data for SGX,1B0"><img src="/images/dl.gif" width="14" height="14"></a>&nbsp;<a href="/stockquote/SGX/1B0.htm" title="View Quote and Chart for SGX,1B0"><img src="/images/chart.gif" width="14" height="14"></a></td></tr>
+    <tr class="ro" onclick="location.href='/stockquote/SGX/1B1.htm';" style="color: red; background: rgb(255, 255, 255);"><td><a href="/stockquote/SGX/1B1.htm" title="Display Quote &amp; Chart for SGX,1B1">1B1</a></td><td>Hc Surgical Specialistslimited</td><td align="right">0.5150</td><td align="right">0.5150</td><td align="right">0.5150</td><td align="right">6,000</td><td align="right">-0.0050</td><td align="center"><img src="/images/dn.gif"></td><td align="left">0.96</td><td align="right"><a href="/stockquote/SGX/1B1.htm" title="Download Data for SGX,1B1"><img src="/images/dl.gif" width="14" height="14"></a>&nbsp;<a href="/stockquote/SGX/1B1.htm" title="View Quote and Chart for SGX,1B1"><img src="/images/chart.gif" width="14" height="14"></a></td></tr>
+    <tr class="re" onclick="location.href='/stockquote/SGX/1B5W.htm';" style="color: black; background: rgb(238, 238, 238);"><td><a href="/stockquote/SGX/1B5W.htm" title="Display Quote &amp; Chart for SGX,1B5W">1B5W</a></td><td>Charisma Energyservicesw211128</td><td align="right">0.0010</td><td align="right">0.0010</td><td align="right">0.0010</td><td align="right">0</td><td align="right">0.0000</td><td align="center"><img src="/images/nc.gif"></td><td align="left">0.00</td><td align="right"><a href="/stockquote/SGX/1B5W.htm" title="Download Data for SGX,1B5W"><img src="/images/dl.gif" width="14" height="14"></a>&nbsp;<a href="/stockquote/SGX/1B5W.htm" title="View Quote and Chart for SGX,1B5W"><img src="/images/chart.gif" width="14" height="14"></a></td></tr>
+    <tr class="ro" onclick="location.href='/stockquote/SGX/1B6.htm';" style="color: black; background: rgb(255, 255, 255);"><td><a href="/stockquote/SGX/1B6.htm" title="Display Quote &amp; Chart for SGX,1B6">1B6</a></td><td>Ocean Sky International Ltd</td><td align="right">0.0480</td><td align="right">0.0480</td><td align="right">0.0480</td><td align="right">0</td><td align="right">0.0000</td><td align="center"><img src="/images/nc.gif"></td><td align="left">0.00</td><td align="right"><a href="/stockquote/SGX/1B6.htm" title="Download Data for SGX,1B6"><img src="/images/dl.gif" width="14" height="14"></a>&nbsp;<a href="/stockquote/SGX/1B6.htm" title="View Quote and Chart for SGX,1B6"><img src="/images/chart.gif" width="14" height="14"></a></td></tr>
+    <tr class="re" onclick="location.href='/stockquote/SGX/1C0.htm';" style="color: black; background: rgb(238, 238, 238);"><td><a href="/stockquote/SGX/1C0.htm" title="Display Quote &amp; Chart for SGX,1C0">1C0</a></td><td>Cedar Strategic Holdings Ltd</td><td align="right">0.0340</td><td align="right">0.0340</td><td align="right">0.0340</td><td align="right">0</td><td align="right">0.0000</td><td align="center"><img src="/images/nc.gif"></td><td align="left">0.00</td><td align="right"><a href="/stockquote/SGX/1C0.htm" title="Download Data for SGX,1C0"><img src="/images/dl.gif" width="14" height="14"></a>&nbsp;<a href="/stockquote/SGX/1C0.htm" title="View Quote and Chart for SGX,1C0"><img src="/images/chart.gif" width="14" height="14"></a></td></tr>
+    <tr class="ro" onclick="location.href='/stockquote/SGX/1C5.htm';" style="color: black; background: rgb(255, 255, 255);"><td><a href="/stockquote/SGX/1C5.htm" title="Display Quote &amp; Chart for SGX,1C5">1C5</a></td><td>Pacific Star Development Ltd</td><td align="right">0.0430</td><td align="right">0.0430</td><td align="right">0.0430</td><td align="right">0</td><td align="right">0.0000</td><td align="center"><img src="/images/nc.gif"></td><td align="left">0.00</td><td align="right"><a href="/stockquote/SGX/1C5.htm" title="Download Data for SGX,1C5"><img src="/images/dl.gif" width="14" height="14"></a>&nbsp;<a href="/stockquote/SGX/1C5.htm" title="View Quote and Chart for SGX,1C5"><img src="/images/chart.gif" width="14" height="14"></a></td></tr>
+    <tr class="re" onclick="location.href='/stockquote/SGX/1D0.htm';" style="color:red;"><td><a href="/stockquote/SGX/1D0.htm" title="Display Quote &amp; Chart for SGX,1D0">1D0</a></td><td>Kimly Limited</td><td align="right">0.3950</td><td align="right">0.3800</td><td align="right">0.3850</td><td align="right">2,287,200</td><td align="right">-0.0100</td><td align="center"><img src="/images/dn.gif"></td><td align="left">2.53</td><td align="right"><a href="/stockquote/SGX/1D0.htm" title="Download Data for SGX,1D0"><img src="/images/dl.gif" width="14" height="14"></a>&nbsp;<a href="/stockquote/SGX/1D0.htm" title="View Quote and Chart for SGX,1D0"><img src="/images/chart.gif" width="14" height="14"></a></td></tr>
+    <tr class="ro" onclick="location.href='/stockquote/SGX/1D1.htm';" style="color: green; background: rgb(255, 255, 255);"><td><a href="/stockquote/SGX/1D1.htm" title="Display Quote &amp; Chart for SGX,1D1">1D1</a></td><td>Unusual Limited</td><td align="right">0.1500</td><td align="right">0.1400</td><td align="right">0.1500</td><td align="right">109,000</td><td align="right">0.0040</td><td align="center"><img src="/images/up.gif"></td><td align="left">2.74</td><td align="right"><a href="/stockquote/SGX/1D1.htm" title="Download Data for SGX,1D1"><img src="/images/dl.gif" width="14" height="14"></a>&nbsp;<a href="/stockquote/SGX/1D1.htm" title="View Quote and Chart for SGX,1D1"><img src="/images/chart.gif" width="14" height="14"></a></td></tr>
+    <tr class="re" onclick="location.href='/stockquote/SGX/1D3.htm';" style="color: red; background: rgb(238, 238, 238);"><td><a href="/stockquote/SGX/1D3.htm" title="Display Quote &amp; Chart for SGX,1D3">1D3</a></td><td>Lifebrandz Ltd.</td><td align="right">0.0050</td><td align="right">0.0040</td><td align="right">0.0040</td><td align="right">1,614,500</td><td align="right">-0.0010</td><td align="center"><img src="/images/dn.gif"></td><td align="left">20.00</td><td align="right"><a href="/stockquote/SGX/1D3.htm" title="Download Data for SGX,1D3"><img src="/images/dl.gif" width="14" height="14"></a>&nbsp;<a href="/stockquote/SGX/1D3.htm" title="View Quote and Chart for SGX,1D3"><img src="/images/chart.gif" width="14" height="14"></a></td></tr>
+    <tr class="ro" onclick="location.href='/stockquote/SGX/1D4.htm';" style="color: red; background: rgb(255, 255, 255);"><td><a href="/stockquote/SGX/1D4.htm" title="Display Quote &amp; Chart for SGX,1D4">1D4</a></td><td>Aoxin Q &amp; M Dental Grp Limited</td><td align="right">0.1780</td><td align="right">0.1720</td><td align="right">0.1750</td><td align="right">298,000</td><td align="right">-0.0010</td><td align="center"><img src="/images/dn.gif"></td><td align="left">0.57</td><td align="right"><a href="/stockquote/SGX/1D4.htm" title="Download Data for SGX,1D4"><img src="/images/dl.gif" width="14" height="14"></a>&nbsp;<a href="/stockquote/SGX/1D4.htm" title="View Quote and Chart for SGX,1D4"><img src="/images/chart.gif" width="14" height="14"></a></td></tr>
+    <tr class="re" onclick="location.href='/stockquote/SGX/1D5.htm';" style="color: black; background: rgb(238, 238, 238);"><td><a href="/stockquote/SGX/1D5.htm" title="Display Quote &amp; Chart for SGX,1D5">1D5</a></td><td>Capital World Limited.</td><td align="right">0.0050</td><td align="right">0.0050</td><td align="right">0.0050</td><td align="right">0</td><td align="right">0.0000</td><td align="center"><img src="/images/nc.gif"></td><td align="left">0.00</td><td align="right"><a href="/stockquote/SGX/1D5.htm" title="Download Data for SGX,1D5"><img src="/images/dl.gif" width="14" height="14"></a>&nbsp;<a href="/stockquote/SGX/1D5.htm" title="View Quote and Chart for SGX,1D5"><img src="/images/chart.gif" width="14" height="14"></a></td></tr>
+    <tr class="ro" onclick="location.href='/stockquote/SGX/1D8.htm';" style="color:red;"><td><a href="/stockquote/SGX/1D8.htm" title="Display Quote &amp; Chart for SGX,1D8">1D8</a></td><td>Singapore O&amp;g Ltd.</td><td align="right">0.2800</td><td align="right">0.2750</td><td align="right">0.2750</td><td align="right">185,400</td><td align="right">-0.0050</td><td align="center"><img src="/images/dn.gif"></td><td align="left">1.79</td><td align="right"><a href="/stockquote/SGX/1D8.htm" title="Download Data for SGX,1D8"><img src="/images/dl.gif" width="14" height="14"></a>&nbsp;<a href="/stockquote/SGX/1D8.htm" title="View Quote and Chart for SGX,1D8"><img src="/images/chart.gif" width="14" height="14"></a></td></tr>
+    <tr class="re" onclick="location.href='/stockquote/SGX/1E3.htm';" style="color:red;"><td><a href="/stockquote/SGX/1E3.htm" title="Display Quote &amp; Chart for SGX,1E3">1E3</a></td><td>Sanli Environmental Limited</td><td align="right">0.1310</td><td align="right">0.1240</td><td align="right">0.1260</td><td align="right">1,089,500</td><td align="right">-0.0070</td><td align="center"><img src="/images/dn.gif"></td><td align="left">5.26</td><td align="right"><a href="/stockquote/SGX/1E3.htm" title="Download Data for SGX,1E3"><img src="/images/dl.gif" width="14" height="14"></a>&nbsp;<a href="/stockquote/SGX/1E3.htm" title="View Quote and Chart for SGX,1E3"><img src="/images/chart.gif" width="14" height="14"></a></td></tr>
+    <tr class="ro" onclick="location.href='/stockquote/SGX/1E6.htm';" style="color: black; background: rgb(255, 255, 255);"><td><a href="/stockquote/SGX/1E6.htm" title="Display Quote &amp; Chart for SGX,1E6">1E6</a></td><td>World Class Global Limited</td><td align="right">0.1470</td><td align="right">0.1470</td><td align="right">0.1470</td><td align="right">0</td><td align="right">0.0000</td><td align="center"><img src="/images/nc.gif"></td><td align="left">0.00</td><td align="right"><a href="/stockquote/SGX/1E6.htm" title="Download Data for SGX,1E6"><img src="/images/dl.gif" width="14" height="14"></a>&nbsp;<a href="/stockquote/SGX/1E6.htm" title="View Quote and Chart for SGX,1E6"><img src="/images/chart.gif" width="14" height="14"></a></td></tr>
+    <tr class="re" onclick="location.href='/stockquote/SGX/1E7W.htm';" style="color:black;"><td><a href="/stockquote/SGX/1E7W.htm" title="Display Quote &amp; Chart for SGX,1E7W">1E7W</a></td><td>Viking Offshore And Ma W220701</td><td align="right">0.0030</td><td align="right">0.0030</td><td align="right">0.0030</td><td align="right">0</td><td align="right">0.0000</td><td align="center"><img src="/images/nc.gif"></td><td align="left">0.00</td><td align="right"><a href="/stockquote/SGX/1E7W.htm" title="Download Data for SGX,1E7W"><img src="/images/dl.gif" width="14" height="14"></a>&nbsp;<a href="/stockquote/SGX/1E7W.htm" title="View Quote and Chart for SGX,1E7W"><img src="/images/chart.gif" width="14" height="14"></a></td></tr>
+    <tr class="ro" onclick="location.href='/stockquote/SGX/1F0.htm';" style="color:black;"><td><a href="/stockquote/SGX/1F0.htm" title="Display Quote &amp; Chart for SGX,1F0">1F0</a></td><td>Shopper360 Limited</td><td align="right">0.1320</td><td align="right">0.1320</td><td align="right">0.1320</td><td align="right">0</td><td align="right">0.0000</td><td align="center"><img src="/images/nc.gif"></td><td align="left">0.00</td><td align="right"><a href="/stockquote/SGX/1F0.htm" title="Download Data for SGX,1F0"><img src="/images/dl.gif" width="14" height="14"></a>&nbsp;<a href="/stockquote/SGX/1F0.htm" title="View Quote and Chart for SGX,1F0"><img src="/images/chart.gif" width="14" height="14"></a></td></tr>
+    <tr class="re" onclick="location.href='/stockquote/SGX/1F1.htm';" style="color:red;"><td><a href="/stockquote/SGX/1F1.htm" title="Display Quote &amp; Chart for SGX,1F1">1F1</a></td><td>Y Ventures Group Ltd.</td><td align="right">0.0620</td><td align="right">0.0600</td><td align="right">0.0600</td><td align="right">452,000</td><td align="right">-0.0040</td><td align="center"><img src="/images/dn.gif"></td><td align="left">6.25</td><td align="right"><a href="/stockquote/SGX/1F1.htm" title="Download Data for SGX,1F1"><img src="/images/dl.gif" width="14" height="14"></a>&nbsp;<a href="/stockquote/SGX/1F1.htm" title="View Quote and Chart for SGX,1F1"><img src="/images/chart.gif" width="14" height="14"></a></td></tr>
+    <tr class="ro" onclick="location.href='/stockquote/SGX/1F2.htm';" style="color:red;"><td><a href="/stockquote/SGX/1F2.htm" title="Display Quote &amp; Chart for SGX,1F2">1F2</a></td><td>Union Gas Holdings Limited</td><td align="right">1.0100</td><td align="right">0.9850</td><td align="right">0.9850</td><td align="right">553,500</td><td align="right">-0.0350</td><td align="center"><img src="/images/dn.gif"></td><td align="left">3.43</td><td align="right"><a href="/stockquote/SGX/1F2.htm" title="Download Data for SGX,1F2"><img src="/images/dl.gif" width="14" height="14"></a>&nbsp;<a href="/stockquote/SGX/1F2.htm" title="View Quote and Chart for SGX,1F2"><img src="/images/chart.gif" width="14" height="14"></a></td></tr>
+    <tr class="re" onclick="location.href='/stockquote/SGX/1F3.htm';" style="color:red;"><td><a href="/stockquote/SGX/1F3.htm" title="Display Quote &amp; Chart for SGX,1F3">1F3</a></td><td>Aspen (group) Holdings Limited</td><td align="right">0.1330</td><td align="right">0.1270</td><td align="right">0.1280</td><td align="right">1,999,000</td><td align="right">-0.0050</td><td align="center"><img src="/images/dn.gif"></td><td align="left">3.76</td><td align="right"><a href="/stockquote/SGX/1F3.htm" title="Download Data for SGX,1F3"><img src="/images/dl.gif" width="14" height="14"></a>&nbsp;<a href="/stockquote/SGX/1F3.htm" title="View Quote and Chart for SGX,1F3"><img src="/images/chart.gif" width="14" height="14"></a></td></tr>
+    <tr class="ro" onclick="location.href='/stockquote/SGX/1F9W.htm';" style="color:black;"><td><a href="/stockquote/SGX/1F9W.htm" title="Display Quote &amp; Chart for SGX,1F9W">1F9W</a></td><td>Koh Brothers Eco Engg W211112</td><td align="right">0.0030</td><td align="right">0.0030</td><td align="right">0.0030</td><td align="right">0</td><td align="right">0.0000</td><td align="center"><img src="/images/nc.gif"></td><td align="left">0.00</td><td align="right"><a href="/stockquote/SGX/1F9W.htm" title="Download Data for SGX,1F9W"><img src="/images/dl.gif" width="14" height="14"></a>&nbsp;<a href="/stockquote/SGX/1F9W.htm" title="View Quote and Chart for SGX,1F9W"><img src="/images/chart.gif" width="14" height="14"></a></td></tr>
+    <tr class="re" onclick="location.href='/stockquote/SGX/1G1.htm';" style="color:red;"><td><a href="/stockquote/SGX/1G1.htm" title="Display Quote &amp; Chart for SGX,1G1">1G1</a></td><td>Re&amp;s Holdings Limited</td><td align="right">0.1600</td><td align="right">0.1510</td><td align="right">0.1510</td><td align="right">190,000</td><td align="right">-0.0020</td><td align="center"><img src="/images/dn.gif"></td><td align="left">1.31</td><td align="right"><a href="/stockquote/SGX/1G1.htm" title="Download Data for SGX,1G1"><img src="/images/dl.gif" width="14" height="14"></a>&nbsp;<a href="/stockquote/SGX/1G1.htm" title="View Quote and Chart for SGX,1G1"><img src="/images/chart.gif" width="14" height="14"></a></td></tr>
+    <tr class="ro" onclick="location.href='/stockquote/SGX/1G5W.htm';" style="color:black;"><td><a href="/stockquote/SGX/1G5W.htm" title="Display Quote &amp; Chart for SGX,1G5W">1G5W</a></td><td>Cwx Global Limited W221213</td><td align="right">0.0010</td><td align="right">0.0010</td><td align="right">0.0010</td><td align="right">0</td><td align="right">0.0000</td><td align="center"><img src="/images/nc.gif"></td><td align="left">0.00</td><td align="right"><a href="/stockquote/SGX/1G5W.htm" title="Download Data for SGX,1G5W"><img src="/images/dl.gif" width="14" height="14"></a>&nbsp;<a href="/stockquote/SGX/1G5W.htm" title="View Quote and Chart for SGX,1G5W"><img src="/images/chart.gif" width="14" height="14"></a></td></tr>
+    <tr class="re" onclick="location.href='/stockquote/SGX/1G6.htm';" style="color:red;"><td><a href="/stockquote/SGX/1G6.htm" title="Display Quote &amp; Chart for SGX,1G6">1G6</a></td><td>No Signboard Holdings Ltd.</td><td align="right">0.0490</td><td align="right">0.0400</td><td align="right">0.0400</td><td align="right">795,700</td><td align="right">-0.0070</td><td align="center"><img src="/images/dn.gif"></td><td align="left">14.89</td><td align="right"><a href="/stockquote/SGX/1G6.htm" title="Download Data for SGX,1G6"><img src="/images/dl.gif" width="14" height="14"></a>&nbsp;<a href="/stockquote/SGX/1G6.htm" title="View Quote and Chart for SGX,1G6"><img src="/images/chart.gif" width="14" height="14"></a></td></tr>
+    <tr class="ro" onclick="location.href='/stockquote/SGX/1G7W.htm';" style="color:black;"><td><a href="/stockquote/SGX/1G7W.htm" title="Display Quote &amp; Chart for SGX,1G7W">1G7W</a></td><td>Amplefield Limited W221218</td><td align="right">0.0090</td><td align="right">0.0090</td><td align="right">0.0090</td><td align="right">0</td><td align="right">0.0000</td><td align="center"><img src="/images/nc.gif"></td><td align="left">0.00</td><td align="right"><a href="/stockquote/SGX/1G7W.htm" title="Download Data for SGX,1G7W"><img src="/images/dl.gif" width="14" height="14"></a>&nbsp;<a href="/stockquote/SGX/1G7W.htm" title="View Quote and Chart for SGX,1G7W"><img src="/images/chart.gif" width="14" height="14"></a></td></tr>
+    <tr class="re" onclick="location.href='/stockquote/SGX/1H2.htm';" style="color:black;"><td><a href="/stockquote/SGX/1H2.htm" title="Display Quote &amp; Chart for SGX,1H2">1H2</a></td><td>Olive Tree Estates Limited</td><td align="right">0.0810</td><td align="right">0.0810</td><td align="right">0.0810</td><td align="right">0</td><td align="right">0.0000</td><td align="center"><img src="/images/nc.gif"></td><td align="left">0.00</td><td align="right"><a href="/stockquote/SGX/1H2.htm" title="Download Data for SGX,1H2"><img src="/images/dl.gif" width="14" height="14"></a>&nbsp;<a href="/stockquote/SGX/1H2.htm" title="View Quote and Chart for SGX,1H2"><img src="/images/chart.gif" width="14" height="14"></a></td></tr>
+    <tr class="ro" onclick="location.href='/stockquote/SGX/1H3.htm';" style="color:red;"><td><a href="/stockquote/SGX/1H3.htm" title="Display Quote &amp; Chart for SGX,1H3">1H3</a></td><td>Clearbridge Health Limited</td><td align="right">0.1300</td><td align="right">0.1210</td><td align="right">0.1210</td><td align="right">1,663,800</td><td align="right">-0.0060</td><td align="center"><img src="/images/dn.gif"></td><td align="left">4.72</td><td align="right"><a href="/stockquote/SGX/1H3.htm" title="Download Data for SGX,1H3"><img src="/images/dl.gif" width="14" height="14"></a>&nbsp;<a href="/stockquote/SGX/1H3.htm" title="View Quote and Chart for SGX,1H3"><img src="/images/chart.gif" width="14" height="14"></a></td></tr>
+    <tr class="re" onclick="location.href='/stockquote/SGX/1H4.htm';" style="color:black;"><td><a href="/stockquote/SGX/1H4.htm" title="Display Quote &amp; Chart for SGX,1H4">1H4</a></td><td>Memories Group Limited</td><td align="right">0.0280</td><td align="right">0.0280</td><td align="right">0.0280</td><td align="right">0</td><td align="right">0.0000</td><td align="center"><img src="/images/nc.gif"></td><td align="left">0.00</td><td align="right"><a href="/stockquote/SGX/1H4.htm" title="Download Data for SGX,1H4"><img src="/images/dl.gif" width="14" height="14"></a>&nbsp;<a href="/stockquote/SGX/1H4.htm" title="View Quote and Chart for SGX,1H4"><img src="/images/chart.gif" width="14" height="14"></a></td></tr>
+    <tr class="ro" onclick="location.href='/stockquote/SGX/1H7W.htm';" style="color:black;"><td><a href="/stockquote/SGX/1H7W.htm" title="Display Quote &amp; Chart for SGX,1H7W">1H7W</a></td><td>Asia-pacific Strategic W230130</td><td align="right">0.0010</td><td align="right">0.0010</td><td align="right">0.0010</td><td align="right">0</td><td align="right">0.0000</td><td align="center"><img src="/images/nc.gif"></td><td align="left">0.00</td><td align="right"><a href="/stockquote/SGX/1H7W.htm" title="Download Data for SGX,1H7W"><img src="/images/dl.gif" width="14" height="14"></a>&nbsp;<a href="/stockquote/SGX/1H7W.htm" title="View Quote and Chart for SGX,1H7W"><img src="/images/chart.gif" width="14" height="14"></a></td></tr>
+    <tr class="re" onclick="location.href='/stockquote/SGX/1H8.htm';" style="color:black;"><td><a href="/stockquote/SGX/1H8.htm" title="Display Quote &amp; Chart for SGX,1H8">1H8</a></td><td>Ly Corporation Limited</td><td align="right">0.1570</td><td align="right">0.1570</td><td align="right">0.1570</td><td align="right">0</td><td align="right">0.0000</td><td align="center"><img src="/images/nc.gif"></td><td align="left">0.00</td><td align="right"><a href="/stockquote/SGX/1H8.htm" title="Download Data for SGX,1H8"><img src="/images/dl.gif" width="14" height="14"></a>&nbsp;<a href="/stockquote/SGX/1H8.htm" title="View Quote and Chart for SGX,1H8"><img src="/images/chart.gif" width="14" height="14"></a></td></tr>
+    <tr class="ro" onclick="location.href='/stockquote/SGX/1I5.htm';" style="color:black;"><td><a href="/stockquote/SGX/1I5.htm" title="Display Quote &amp; Chart for SGX,1I5">1I5</a></td><td>Ayondo Ltd.</td><td align="right">0.0480</td><td align="right">0.0480</td><td align="right">0.0480</td><td align="right">0</td><td align="right">0.0000</td><td align="center"><img src="/images/nc.gif"></td><td align="left">0.00</td><td align="right"><a href="/stockquote/SGX/1I5.htm" title="Download Data for SGX,1I5"><img src="/images/dl.gif" width="14" height="14"></a>&nbsp;<a href="/stockquote/SGX/1I5.htm" title="View Quote and Chart for SGX,1I5"><img src="/images/chart.gif" width="14" height="14"></a></td></tr>
+    <tr class="re" onclick="location.href='/stockquote/SGX/1J0.htm';" style="color:black;"><td><a href="/stockquote/SGX/1J0.htm" title="Display Quote &amp; Chart for SGX,1J0">1J0</a></td><td>Slb Development Ltd.</td><td align="right">0.1320</td><td align="right">0.1320</td><td align="right">0.1320</td><td align="right">0</td><td align="right">0.0000</td><td align="center"><img src="/images/nc.gif"></td><td align="left">0.00</td><td align="right"><a href="/stockquote/SGX/1J0.htm" title="Download Data for SGX,1J0"><img src="/images/dl.gif" width="14" height="14"></a>&nbsp;<a href="/stockquote/SGX/1J0.htm" title="View Quote and Chart for SGX,1J0"><img src="/images/chart.gif" width="14" height="14"></a></td></tr>
+    <tr class="ro" onclick="location.href='/stockquote/SGX/1J1W.htm';" style="color:black;"><td><a href="/stockquote/SGX/1J1W.htm" title="Display Quote &amp; Chart for SGX,1J1W">1J1W</a></td><td>Pine Capital Group W230506</td><td align="right">0.0010</td><td align="right">0.0010</td><td align="right">0.0010</td><td align="right">0</td><td align="right">0.0000</td><td align="center"><img src="/images/nc.gif"></td><td align="left">0.00</td><td align="right"><a href="/stockquote/SGX/1J1W.htm" title="Download Data for SGX,1J1W"><img src="/images/dl.gif" width="14" height="14"></a>&nbsp;<a href="/stockquote/SGX/1J1W.htm" title="View Quote and Chart for SGX,1J1W"><img src="/images/chart.gif" width="14" height="14"></a></td></tr>
+    <tr class="re" onclick="location.href='/stockquote/SGX/1J3.htm';" style="color:red;"><td><a href="/stockquote/SGX/1J3.htm" title="Display Quote &amp; Chart for SGX,1J3">1J3</a></td><td>Asian Healthcare Specialists</td><td align="right">0.1660</td><td align="right">0.1660</td><td align="right">0.1660</td><td align="right">21,100</td><td align="right">-0.0060</td><td align="center"><img src="/images/dn.gif"></td><td align="left">3.49</td><td align="right"><a href="/stockquote/SGX/1J3.htm" title="Download Data for SGX,1J3"><img src="/images/dl.gif" width="14" height="14"></a>&nbsp;<a href="/stockquote/SGX/1J3.htm" title="View Quote and Chart for SGX,1J3"><img src="/images/chart.gif" width="14" height="14"></a></td></tr>
+    <tr class="ro" onclick="location.href='/stockquote/SGX/1J4.htm';" style="color:red;"><td><a href="/stockquote/SGX/1J4.htm" title="Display Quote &amp; Chart for SGX,1J4">1J4</a></td><td>Jep Holdings Ltd.</td><td align="right">0.2250</td><td align="right">0.2150</td><td align="right">0.2150</td><td align="right">179,100</td><td align="right">-0.0050</td><td align="center"><img src="/images/dn.gif"></td><td align="left">2.27</td><td align="right"><a href="/stockquote/SGX/1J4.htm" title="Download Data for SGX,1J4"><img src="/images/dl.gif" width="14" height="14"></a>&nbsp;<a href="/stockquote/SGX/1J4.htm" title="View Quote and Chart for SGX,1J4"><img src="/images/chart.gif" width="14" height="14"></a></td></tr>
+    <tr class="re" onclick="location.href='/stockquote/SGX/1J5.htm';" style="color:green;"><td><a href="/stockquote/SGX/1J5.htm" title="Display Quote &amp; Chart for SGX,1J5">1J5</a></td><td>Hyphens Pharma Intl Limited</td><td align="right">0.3150</td><td align="right">0.3100</td><td align="right">0.3150</td><td align="right">148,300</td><td align="right">0.0050</td><td align="center"><img src="/images/up.gif"></td><td align="left">1.61</td><td align="right"><a href="/stockquote/SGX/1J5.htm" title="Download Data for SGX,1J5"><img src="/images/dl.gif" width="14" height="14"></a>&nbsp;<a href="/stockquote/SGX/1J5.htm" title="View Quote and Chart for SGX,1J5"><img src="/images/chart.gif" width="14" height="14"></a></td></tr>
+    <tr class="ro" onclick="location.href='/stockquote/SGX/1J7.htm';" style="color:black;"><td><a href="/stockquote/SGX/1J7.htm" title="Display Quote &amp; Chart for SGX,1J7">1J7</a></td><td>Jawala Inc.</td><td align="right">0.1800</td><td align="right">0.1800</td><td align="right">0.1800</td><td align="right">0</td><td align="right">0.0000</td><td align="center"><img src="/images/nc.gif"></td><td align="left">0.00</td><td align="right"><a href="/stockquote/SGX/1J7.htm" title="Download Data for SGX,1J7"><img src="/images/dl.gif" width="14" height="14"></a>&nbsp;<a href="/stockquote/SGX/1J7.htm" title="View Quote and Chart for SGX,1J7"><img src="/images/chart.gif" width="14" height="14"></a></td></tr>
+    <tr class="re" onclick="location.href='/stockquote/SGX/1P7W.htm';" style="color:black;"><td><a href="/stockquote/SGX/1P7W.htm" title="Display Quote &amp; Chart for SGX,1P7W">1P7W</a></td><td>Top Glove Mb Ecw210917</td><td align="right">0.0010</td><td align="right">0.0010</td><td align="right">0.0010</td><td align="right">0</td><td align="right">0.0000</td><td align="center"><img src="/images/nc.gif"></td><td align="left">0.00</td><td align="right"><a href="/stockquote/SGX/1P7W.htm" title="Download Data for SGX,1P7W"><img src="/images/dl.gif" width="14" height="14"></a>&nbsp;<a href="/stockquote/SGX/1P7W.htm" title="View Quote and Chart for SGX,1P7W"><img src="/images/chart.gif" width="14" height="14"></a></td></tr>
+    <tr class="ro" onclick="location.href='/stockquote/SGX/1Y1.htm';" style="color:black;"><td><a href="/stockquote/SGX/1Y1.htm" title="Display Quote &amp; Chart for SGX,1Y1">1Y1</a></td><td>Vikingoffshore</td><td align="right">0.2000</td><td align="right">0.2000</td><td align="right">0.2000</td><td align="right">0</td><td align="right">0.0000</td><td align="center"><img src="/images/nc.gif"></td><td align="left">0.00</td><td align="right"><a href="/stockquote/SGX/1Y1.htm" title="Download Data for SGX,1Y1"><img src="/images/dl.gif" width="14" height="14"></a>&nbsp;<a href="/stockquote/SGX/1Y1.htm" title="View Quote and Chart for SGX,1Y1"><img src="/images/chart.gif" width="14" height="14"></a></td></tr>
+    </tbody></table>
+    </div>
+  </span>
+    </fieldset>
+</form>
+  <form><fieldset>
+  <span>
+    <h2 id = "messagecontainer">Trade Directly</h2>
+    <div id="selection" style="width: 100%;">
+        <select class="select-css" name="category" value="Select Category" id="category" style="margin-right:20px;"
+            onchange="populate(this.id,'product')">
+           <option value="Category" disabled selected>Settlement mode</option>
+            
+            <option value="Cash">Cash</option>
+            <option value="Cash Upfront">Cash Upfront</option>
+            <option value="CPF/SRS">CPF/SRS</option>
+        </select>
+   
+        <select class="select-css" name="product" id="product">
+            <option value="" disabled selected>Settlement currency</option>
+          <option value="Cash">SGD</option>
+            <option value="Cash Upfront">USD</option>
+            <option value="CPF/SRS">INR</option>
+        </select>
+       </div> 
+  </span>
+    
+  <br>
+  <br>
+ 
+  
+  
+ 
+ <form>
+  <fieldset>
+    <legend >ORDER ACTION</legend>
+    <div id = "radio1">
+      <input type="radio" id="contactChoice1"
+       name="contact" value="email" checked>
+      <label for="contactChoice1">BUY</label>
+
+      <input type="radio" id="contactChoice2"
+       name="contact" value="phone">
+      <label for="contactChoice2">SELL</label>
+      <label class="container1">Set Alert
+  <input type="checkbox" id = "checkbox" value = "True" checked="true">
+  <!-- <span class="checkmark"></span> -->
+</label>
+    </div>
+    
+    
+ 
+    
+ <div id="selection" style="width: 100%;">
+        <select class="select-css" name="category" value="Select Category" id="category1" style="margin-right:10px"
+            onchange="populate(this.id,'product')">
+           <option value="Category" disabled selected>Order Tyoe</option>
+            
+            <option value="Cash">Limit</option>
+            <option value="Cash Upfront">Market</option>
+            <option value="CPF/SRS">Cover</option>
+        </select>
+   <br>
+   <br>
+ 
+        <select class="select-css" name="product" id="product1">
+            <option value="" disabled selected>Order Duration</option>
+          <option value="Cash">Good for today</option>
+            <option value="Cash Upfront">Immediate or Cancel</option>
+            <option value="CPF/SRS">After Market Order</option>
+        </select>
+
+    </div>
+    <br>
+    <input id="quantity" type="text" name="quantity" placeholder="Quantity">
+    <input id="quantity1" type="text" name="quantity" placeholder="Price">
+    <div>
+      <br>
+<button type="submit" style = "border-left:20%" onclick="getStockName()">Set Alert</button></span>
+    
+<button type="submit" style = "border-left:20%">Cancel Order</button></span>
+    </div>
+   </fieldset>
+  </form>
+<form><fieldset>
+  <!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+
+</style>
+</head>
+<body>
+
+<h2>Order Confirmation</h2>
+<div class="row">
+  <div class="col-75">
+   
+  </div>
+  <div class="col-25">
+    <div class="container">
+      <table><tr><td> <label for="fname"><b> Buying Power</label></td></tr>
+        <tr><td> <label for="fname"> Buy limit</label></td><td>2000</td></tr>
+     <tr><td>  <label for="fname">Sell Limit </label></td><td>1600</td></tr>
+      
+      </table>
+      
+    </div>
+    <div class="container">
+       <table><tr><td> <label for="fname"><b> Available Balance</label></td></tr>
+        <tr><td> <label for="fname">SGD</label></td><td>700</td></tr>
+     <tr><td>  <label for="fname">USD </label></td><td>100</td></tr>
+     
+      </table>
+     </div>
+    <input type="submit" value="Confirm Order" class="btn">
+  </div>  
+    
+
+</body>
+</html>
