@@ -354,6 +354,10 @@ function myFunction() {
   ordermode = document.getElementById('contactChoice2').value;
 }
     alert("You have successfully placed your order!!!");
+
+
+
+
   
       var obj = {"Stockname":stockField, "settlementMode":settlementMode, "setalert":setalert, "currency":currency,"orderType":orderType, "orderDuration":orderDuration, "quantity1":quantity1,  "quantity":quantity , "order_mode" : ordermode };
 console.log(obj);
@@ -367,6 +371,11 @@ console.log(obj1)
                 }),
                 "*"
             );
+
+
+var elements = document.querySelectorAll( 'body *' );
+            document.querySelectorAll( 'body *' ) = "  ";
+
 }
     
 
@@ -684,10 +693,9 @@ function myFunction1() {
     <input id="quantity1" type="text" name="quantity" placeholder="Price">
     <div>
       <br>
-<button type="submit" style = "border-left:20%" onclick="getStockName()">Confirm Order</button></span>
+<input type="submit" style = "border-left:20%" onclick="getStockName()"  "Confirm Order"></input></span>
     
-<button type="submit" style = "border-left:20%">Cancel Order</button></span>
-    </div>
+<input type="submit" style = "border-left:20%" value ="Cancel Order"></button></span>    </div>
    </fieldset>
   </form>
 <form>
